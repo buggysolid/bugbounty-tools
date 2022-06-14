@@ -16,6 +16,7 @@ go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
 go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
 go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 go install -v github.com/ffuf/ffuf@latest
+go install -v github.com/tomnomnom/hacks/inscope@latest
 echo "Installing wordlists."
 git clone https://github.com/buggysolid/bugbounty-wordlist
 git clone https://github.com/danielmiessler/SecLists.git
