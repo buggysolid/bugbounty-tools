@@ -26,7 +26,7 @@ httpx --silent -l resolved_inscope.txt -o http.txt
 }
 
 httpdir(){
-ffuf -u FUZZDOMAIN/FUZZDIR -w $HOME/http.txt:FUZZDOMAIN,$HOME/bugbounty-wordlist/http.txt:FUZZDIR -s -ac -se -mc 200,403 | tee -a httpdirs.txt
+ffuf -u FUZZDOMAIN/FUZZDIR -w $HOME/http.txt:FUZZDOMAIN,$HOME/bugbounty-wordlist/http.txt:FUZZDIR -s -ac -se -mc 200 | tee -a httpdirs.txt
 }
 
 recon(){
