@@ -29,6 +29,10 @@ httpdir(){
 ffuf -u FUZZDOMAIN/FUZZDIR -w $HOME/http.txt:FUZZDOMAIN,$HOME/bugbounty-wordlist/http.txt:FUZZDIR -s -ac -se -mc 200 | tee -a httpdirs.txt
 }
 
+portprobe(){
+naabu -v -list resolved_inscope.txt -p $(cat bugbounty-wordlist/ports.txt | tr '\n' ',' | sed 's/,$//g') -o ports.txt
+}
+
 recon(){
 echo $1 > .scope
 getdns $1
@@ -36,4 +40,5 @@ gendns
 querydns
 http
 httpdir
+portprobe
 }
