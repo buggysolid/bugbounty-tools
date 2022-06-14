@@ -26,10 +26,11 @@ httpx --silent -l resolved_inscope.txt -o http.txt
 }
 
 httpdir(){
-ffuf -u FUZZDOMAIN/FUZZDIR -w $HOME/http.txt:FUZZDOMAIN,$HOME/bugbounty-wordlist/http.txt:FUZZDIR | tee -a httpdirs.txt
+ffuf -u FUZZDOMAIN/FUZZDIR -w $HOME/http.txt:FUZZDOMAIN,$HOME/bugbounty-wordlist/http.txt:FUZZDIR -s -ac | tee -a httpdirs.txt
 }
 
 recon(){
+echo $1 > .scope
 getdns $1
 gendns
 querydns
