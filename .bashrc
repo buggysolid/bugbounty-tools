@@ -5,19 +5,19 @@ export PATH=$PATH:$HOME/dirble/target/release
 . "$HOME/.cargo/env"
 
 getdns(){
-subfinder -d $1 -silent -o subs.txt
+subfinder -d $1 -silent -rL $HOME/bugbounty-wordlist/resolvers.txt -o subs.txt
 }
 
 gendns(){
 TMPOUT_APPEND=$(tempfile)
 TMPOUT_PREPEND=$(tempfile)
-DNScewl -l subs.txt -a lists/wordlists/dns-keywords.txt | tail -n +15 >> $TMPOUT_APPEND
-DNScewl -l subs.txt -p lists/wordlists/dns-keywords.txt | tail -n +15 >> $TMPOUT_PREPEND
+DNScewl -l subs.txt -a $HOME/bugbounty-wordlist/dns.txt | tail -n +15 >> $TMPOUT_APPEND
+DNScewl -l subs.txt -p $HOME/bugbounty-wordlist/dns.txt | tail -n +15 >> $TMPOUT_PREPEND
 cat subs.txt $TMPOUT_PREPEND $TMPOUT_APPEND > subs_permutated.txt
 }
 
 querydns(){
-dnsx -silent -r lists/resolvers.txt -l subs_permutated.txt -o resolved.txt
+dnsx -silent -r $HOME/bugbounty-wordlist/resolvers.txt -l subs_permutated.txt -o resolved.txt
 }
 
 http(){
@@ -25,7 +25,7 @@ httpx --silent -l resolved.txt -o http.txt
 }
 
 httpdir(){
-dirble -k -t 2 --scan-401 --scan-403 --wordlist ~/lists/wordlists/http-keywords.txt --uri-file ~/http.txt --output-file httpdirs.txt
+ffuf -u FUZZDOMAIN/FUZZDIR -w $HOME/http.txt:FUZZDOMAIN,$HOME/bugbounty-wordlist/http.txt:FUZZDIR | tee -a httpdirs.txt
 }
 
 recon(){
