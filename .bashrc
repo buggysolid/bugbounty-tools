@@ -18,10 +18,11 @@ cat subs.txt $TMPOUT_PREPEND $TMPOUT_APPEND > subs_permutated.txt
 
 querydns(){
 dnsx -silent -r $HOME/bugbounty-wordlist/resolvers.txt -l subs_permutated.txt -o resolved.txt
+cat resolved.txt | inscope > resolved_inscope.txt
 }
 
 http(){
-httpx --silent -l resolved.txt -o http.txt
+httpx --silent -l resolved_inscope.txt -o http.txt
 }
 
 httpdir(){
