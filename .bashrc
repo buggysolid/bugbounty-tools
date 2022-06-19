@@ -1,6 +1,6 @@
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/bugbounty-tools/DNSCewl
+export PATH=$PATH:$HOME/DNSCewl
 . "$HOME/.cargo/env"
 
 getdns(){
