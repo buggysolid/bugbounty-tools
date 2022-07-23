@@ -2,7 +2,7 @@ echo 'Installing deps.'
 wget 'https://go.dev/dl/go1.18.3.linux-amd64.tar.gz'
 rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.3.linux-amd64.tar.gz
 curl https://sh.rustup.rs -sSf | sh -s -- -y
-sudo apt-get update && sudo apt-get install -y libpcap-dev git gcc build-essential
+sudo apt-get update && sudo apt-get install -y libpcap-dev git gcc build-essential jq
 git clone https://github.com/codingo/DNSCewl $HOME/DNSCewl
 cd $HOME/DNSCewl
 make
