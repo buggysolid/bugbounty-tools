@@ -1,7 +1,6 @@
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/DNSCewl
-. "$HOME/.cargo/env"
 
 getdns(){
 subfinder -d $1 -silent -rL $HOME/bugbounty-wordlist/resolvers.txt -o subs.txt
@@ -44,4 +43,5 @@ querydns
 http
 httpdir
 portprobe
+urls
 }
