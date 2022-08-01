@@ -23,7 +23,8 @@ Give me commands!
 sudo apt-get install git -y
 git clone https://github.com/buggysolid/bugbounty-tools
 cd bugbounty-tools
-./install.sh
+chmod +x install.sh
+sudo -u $USER ./install.sh
 cd
 source $HOME/.bashrc
 ```

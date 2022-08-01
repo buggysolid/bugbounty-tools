@@ -1,17 +1,12 @@
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/DNSCewl
 
 getdns(){
 subfinder -d $1 -silent -rL $HOME/bugbounty-wordlist/resolvers.txt -o subs.txt
 }
 
 gendns(){
-TMPOUT_APPEND=$(mktemp)
-TMPOUT_PREPEND=$(mktemp)
-DNScewl -l subs.txt -a $HOME/bugbounty-wordlist/dns.txt | tail -n +15 >> $TMPOUT_APPEND
-DNScewl -l subs.txt -p $HOME/bugbounty-wordlist/dns.txt | tail -n +15 >> $TMPOUT_PREPEND
-cat subs.txt $TMPOUT_PREPEND $TMPOUT_APPEND > subs_permutated.txt
+mksub -df subs.txt -w $HOME/bugbounty-wordlist/dns.txt -o subs_permutated.txt
 }
 
 querydns(){
