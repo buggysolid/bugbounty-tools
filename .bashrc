@@ -6,7 +6,7 @@ subfinder -d $1 -silent -rL $HOME/bugbounty-wordlist/resolvers.txt -o subs.txt
 }
 
 gendns(){
-mksub -df subs.txt -w $HOME/bugbounty-wordlist/dns.txt -o subs_permutated.txt
+mksub -silent -df subs.txt -w $HOME/bugbounty-wordlist/dns.txt -o subs_permutated.txt
 }
 
 querydns(){
@@ -15,7 +15,7 @@ cat resolved.txt | inscope > resolved_inscope.txt
 }
 
 http(){
-httpx --silent -l resolved_inscope.txt -o http.txt
+httpx -silent -l resolved_inscope.txt -o http.txt
 }
 
 httpdir(){
