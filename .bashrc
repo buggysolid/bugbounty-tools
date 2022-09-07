@@ -29,7 +29,6 @@ cat $HOME/$OUTPUT_DIR/httpdirs.json | jq '.results[].url' | tr -d '"' | sort -u
 }
 
 recon(){
-OUTPUT_DIR="$(mktemp -d -p . $1.XXXXXX)"
 if [[ "$2" == "wildcard" ]]; then
 	echo "$1" > .scope
 elif [[ ! -f ".scope" ]]; then
@@ -41,6 +40,7 @@ elif [[ ! -f ".scope" ]]; then
 	echo "Usage: recon somedomain.tld wildcard"
 	return -1
 fi
+OUTPUT_DIR="$(mktemp -d -p . $1.XXXXXX)"
 getdns $1
 gendns
 querydns
