@@ -21,11 +21,11 @@ httpx -silent -l $OUTPUT_DIR/resolved_inscope.txt -o $HOME/$OUTPUT_DIR/http.txt
 }
 
 httpdir(){
-ffuf -u FUZZDOMAIN/FUZZDIR -w $HOME/$OUTPUT_DIR/http.txt:FUZZDOMAIN,$HOME/bugbounty-wordlist/http.txt:FUZZDIR -s -ac -se -mc 200 -o $HOME/$OUTPUT_DIR/httpdirs.json
+ffuf -u FUZZDOMAIN/FUZZDIR -w $HOME/$OUTPUT_DIR/http.txt:FUZZDOMAIN,$HOME/bugbounty-wordlist/http.txt:FUZZDIR -s -ac -se -mc 200 -fr "not found" -fr "JavaScript enabled" -o $HOME/$OUTPUT_DIR/httpdirs.json
 }
 
 urls(){
-cat $HOME/$OUTPUT_DIR/httpdirs.json | jq '.results[].url' | tr -d '"' | sort -u
+cat $HOME/$OUTPUT_DIR/httpdirs.json | jq '.results[].url' | tr -d '"' | sort -u | tee -a $HOME/$OUTPUT_DIR/urls.txt
 }
 
 recon(){
@@ -46,6 +46,9 @@ gendns
 querydns
 http
 httpdir
-clear
+echo
+echo
+echo
+echo
 urls
 }

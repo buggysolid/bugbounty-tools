@@ -24,7 +24,7 @@ sudo apt-get install git -y
 git clone https://github.com/buggysolid/bugbounty-tools
 cd bugbounty-tools
 chmod +x install.sh
-sudo -u $USER ./install.sh
+sudo runuser -u $USER ./install.sh
 cd
 source $HOME/.bashrc
 ```
@@ -32,21 +32,20 @@ source $HOME/.bashrc
 
 Lets use the Lime bug bounty program as an example. https://bugcrowd.com/lime
 
+### Wildcard scope scanning
+
 ```
-root@ubuntu-s-1vcpu-1gb-ams3-01:~# recon limeinternal.com
+root@ubuntu-s-1vcpu-1gb-ams3-01:~# recon limeinternal.com wildcard
 data-staging.limeinternal.com
 pmm.limeinternal.com
 limeinternal.com
 ml-staging.limeinternal.com
-... Lots of output and command chaining
-root@ubuntu-s-1vcpu-1gb-ams3-01:~# ls *.txt
-http.txt  httpdirs.txt  ports.txt  resolved.txt  resolved_inscope.txt  subs.txt  subs_permutated.txt
-root@ubuntu-s-1vcpu-1gb-ams3-01:~#
 ```
 
-http.txt - This will contain hostnames that are reachable over http or https. </br>
-httpdirs.txt - This will contain hostnames that were reachable and a list of found directories for each hostname. </br>
-ports.txt -This will contain hostnames that responded on the scanned port list found in bugbounty-wordlist/ports.txt </br>
-resolved_inscope.txt - DNS queries that provided a response filtered for only ```*.limeinternal.com``` names. 
+### Defined scope scanning
 
-
+```
+echo '^airflow\.limeinternal\.com$' > .scope
+recon limeinternal.com
+https://airflow.limeinternal.com/health
+```

@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root."
-  exit
-fi
 echo 'Installing deps.'
+sudo apt-get update && sudo apt-get install -y git jq clang wget util-linux
 wget 'https://go.dev/dl/go1.18.4.linux-amd64.tar.gz'
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.18.4.linux-amd64.tar.gz
-sudo apt-get update && sudo apt-get install -y git jq clang
+# Drop priviledges
+sudo -k
 export CC=/usr/bin/clang
 git clone https://github.com/buggysolid/bugbounty-tools "$HOME"/bugbounty-tools
 \cp "$HOME"/bugbounty-tools/.bashrc "$HOME"/.bashrc
