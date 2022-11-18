@@ -29,29 +29,29 @@ Give me commands!
 sudo apt-get install git -y
 git clone https://github.com/buggysolid/bugbounty-tools
 cd bugbounty-tools
-chmod +x install.sh
+chmod +x install.sh recon.sh
 sudo runuser -u $USER ./install.sh
 ```
 
 ## Example
 
-Lets use the Lime bug bounty program as an example. https://bugcrowd.com/lime
+Lets use the Elastic bug bounty program as an example. https://hackerone.com/elastic?type=team
 
 ### Wildcard scope scanning
 
 ```
-root@ubuntu-s-1vcpu-1gb-ams3-01:~# recon lime.bike wildcard
-web-experimental-1.lime.bike
-admintool-experimental.lime.bike
-cdn.ops.lime.bike
-web-staging.lime.bike
-web.lime.bike
+root@ubuntu-c-4-8gib-ams3-01:~# ./bugbounty-tools/recon.sh elastic-cloud.com wildcard
+api.fleet.me-south-1.aws.elastic-cloud.com
+api-reference.asia-southeast1.gcp.elastic-cloud.com
+api.europe-west2.gcp.elastic-cloud.com
+api.europe-west2.gcp.elastic-cloud.com
 ```
 
 ### Defined scope scanning
 
 ```
-echo '^juicer\.lime\.bike' > .scope
-recon lime.bike
-juicer.lime.bike
+root@ubuntu-s-1vcpu-1gb-ams3-01:~# echo '^.*\.gcp\.elastic-cloud\.com' > .scope
+root@ubuntu-s-1vcpu-1gb-ams3-01:~# ./bugbounty-tools/recon.sh elastic-cloud.com
+https://ws.apm.asia-south1.gcp.elastic-cloud.com 
+https://staging.apm.us-central1.gcp.elastic-cloud.com 
 ```
