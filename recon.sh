@@ -17,7 +17,7 @@ querydns(){
     dnsx -silent -a -aaaa -cname -retry 1 -r $HOME/bugbounty-wordlist/resolvers.txt -l $HOME/$OUTPUT_DIR/subs_permutated.txt -o $HOME/$OUTPUT_DIR/resolved.txt
     cat $HOME/$OUTPUT_DIR/resolved.txt | inscope > $HOME/$OUTPUT_DIR/resolved_inscope.txt
     # CNAMEs can end up pointing to something an A record was pointing to in the first place.
-    sort -u $HOME/$OUTPUT_DIR/resolved_inscope.txt >> resolved_inscope_uniq.txt
+    sort -u $HOME/$OUTPUT_DIR/resolved_inscope.txt >> $HOME/$OUTPUT_DIR/resolved_inscope_uniq.txt
 }
 
 http(){
@@ -25,12 +25,12 @@ http(){
 }
 
 split_http_results_by_status_code(){
-    awk '/200/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> 200.txt
-    awk '/301/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> 301.txt
-    awk '/302/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> 302.txt
-    awk '/401/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> 401.txt
-    awk '/403/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> 403.txt
-    awk '/404/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> 404.txt
+    awk '/200/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/200.txt
+    awk '/301/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/301.txt
+    awk '/302/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/302.txt
+    awk '/401/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/401.txt
+    awk '/403/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/403.txt
+    awk '/404/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/404.txt
 }
 
 start(){
