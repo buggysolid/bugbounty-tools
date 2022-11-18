@@ -21,7 +21,7 @@ querydns(){
 }
 
 http(){
-    httpx -silent -retries 0 -timeout 1 -sd -sc -title -mc 404,403,401,301,302,200 -r $HOME/bugbounty-wordlist/resolvers.txt -l $OUTPUT_DIR/resolved_inscope.txt -o $HOME/$OUTPUT_DIR/http.txt
+    httpx -silent -retries 0 -timeout 1 -sd -sc -title -mc 404,403,401,301,302,200 -r $HOME/bugbounty-wordlist/resolvers.txt -l $HOME/$OUTPUT_DIR/resolved_inscope.txt -o $HOME/$OUTPUT_DIR/http.txt
 }
 
 split_http_results_by_status_code(){
