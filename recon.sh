@@ -25,12 +25,12 @@ http(){
 }
 
 split_http_results_by_status_code(){
-    awk '/200/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/200.txt
-    awk '/301/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/301.txt
-    awk '/302/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/302.txt
-    awk '/401/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/401.txt
-    awk '/403/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/403.txt
-    awk '/404/' $HOME/$OUTPUT_DIR/http.txt | sort -ri -k3 >> $HOME/$OUTPUT_DIR/404.txt
+    awk '/200/' $HOME/$OUTPUT_DIR/http.txt | sort -i -k3 >> $HOME/$OUTPUT_DIR/200.txt
+    awk '/301/' $HOME/$OUTPUT_DIR/http.txt | sort -i -k3 >> $HOME/$OUTPUT_DIR/301.txt
+    awk '/302/' $HOME/$OUTPUT_DIR/http.txt | sort -i -k3 >> $HOME/$OUTPUT_DIR/302.txt
+    awk '/401/' $HOME/$OUTPUT_DIR/http.txt | sort -i -k3 >> $HOME/$OUTPUT_DIR/401.txt
+    awk '/403/' $HOME/$OUTPUT_DIR/http.txt | sort -i -k3 >> $HOME/$OUTPUT_DIR/403.txt
+    awk '/404/' $HOME/$OUTPUT_DIR/http.txt | sort -i -k3 >> $HOME/$OUTPUT_DIR/404.txt
 }
 
 start(){
