@@ -17,7 +17,7 @@ querydns(){
     dnsx -silent -a -aaaa -cname -retry 1 -r $HOME/bugbounty-wordlist/resolvers.txt -l $HOME/$OUTPUT_DIR/subs_permutated.txt -o $HOME/$OUTPUT_DIR/resolved.txt
     cat $HOME/$OUTPUT_DIR/resolved.txt | inscope > $HOME/$OUTPUT_DIR/resolved_inscope.txt
     # CNAMEs can end up pointing to something an A record was pointing to in the first place.
-    sort -u $HOME/$OUTPUT_DIR/resolved_inscope.txt >> $HOME/$OUTPUT_DIR/resolved_inscope_uniq.txt
+    sort -u $HOME/$OUTPUT_DIR/resolved_inscope.txt -o $HOME/$OUTPUT_DIR/resolved_inscope.txt
 }
 
 http(){
