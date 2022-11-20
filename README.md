@@ -25,8 +25,20 @@ Give me commands!
 
 ## Install
 
+### apt-get package manager
+
 ```
 sudo apt-get install git -y
+git clone https://github.com/buggysolid/bugbounty-tools
+cd bugbounty-tools
+chmod +x install.sh recon.sh
+sudo runuser -u $USER ./install.sh
+```
+
+### yum/dnf package manager
+
+```
+sudo yum install git -y
 git clone https://github.com/buggysolid/bugbounty-tools
 cd bugbounty-tools
 chmod +x install.sh recon.sh
