@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 echo 'Installing deps.'
-sudo apt-get update && sudo apt-get install -y git jq clang wget util-linux libpcap-dev
+if [[ -f "/usr/bin/apt" ]]; then
+    apt-get update && sudo apt-get install -y git jq clang wget util-linux libpcap-dev
+elif [[ -f "/usr/bin/yum" ]]; then
+    yum makecache
+    yum install -y git jq clang wget util-linux libpcap-devel
+else
+  echo "Could not determine which package manager is installed."
+  exit
+fi
+
 GO_LANG_DOWNLOAD_URL='https://go.dev/dl/go1.19.3.linux-amd64.tar.gz'
 GO_LANG_TARBALL='golang.tar.gz'
 wget $GO_LANG_DOWNLOAD_URL -O $GO_LANG_TARBALL
