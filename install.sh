@@ -31,9 +31,6 @@ echo 'Installing tools.'
 /usr/local/go/bin/go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 /usr/local/go/bin/go install -v github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest
 /usr/local/go/bin/go install -v github.com/projectdiscovery/tlsx/cmd/tlsx@v0.0.8
-/usr/local/go/bin/go install -v github.com/projectdiscovery/katana/cmd/katana@latest
-/usr/local/go/bin/go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
-/usr/local/go/bin/go install -v github.com/ffuf/ffuf@latest
 /usr/local/go/bin/go install -v github.com/tomnomnom/hacks/inscope@latest
 /usr/local/go/bin/go install -v github.com/trickest/mksub@latest
 
