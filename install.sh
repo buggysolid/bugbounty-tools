@@ -14,7 +14,7 @@ ARCH="$(uname -a | cut -d ' ' -f12)"
 
 GO_LANG_DOWNLOAD_URL='https://go.dev/dl/go1.20.4.linux-amd64.tar.gz'
 
-if [[ "aarch64" -eq "$ARCH" ]]; then
+if [[ "aarch64" = "$ARCH" ]]; then
     GO_LANG_DOWNLOAD_URL='https://go.dev/dl/go1.20.4.linux-arm64.tar.gz'
 fi
 
