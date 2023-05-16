@@ -12,10 +12,10 @@ fi
 
 ARCH="$(uname -a | cut -d ' ' -f12)"
 
-GO_LANG_DOWNLOAD_URL='https://go.dev/dl/go1.19.3.linux-amd64.tar.gz'
+GO_LANG_DOWNLOAD_URL='https://go.dev/dl/go1.20.4.linux-amd64.tar.gz'
 
 if [[ "aarch64" -eq "$ARCH" ]]; then
-    GO_LANG_DOWNLOAD_URL='https://go.dev/dl/go1.19.3.linux-arm64.tar.gz'
+    GO_LANG_DOWNLOAD_URL='https://go.dev/dl/go1.20.4.linux-arm64.tar.gz'
 fi
 
 GO_LANG_TARBALL='golang.tar.gz'
@@ -33,12 +33,9 @@ echo 'PATH=$PATH:/usr/local/go/bin' >> "$HOME/.bashrc"
 echo 'PATH=$PATH:$HOME/go/bin' >> "$HOME/.bashrc"
 
 echo 'Installing tools.'
-/usr/local/go/bin/go install -v github.com/projectdiscovery/tlsx/cmd/tlsx@v0.0.8
 /usr/local/go/bin/go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 /usr/local/go/bin/go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
 /usr/local/go/bin/go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-/usr/local/go/bin/go install -v github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest
-/usr/local/go/bin/go install -v software.sslmate.com/src/certspotter/cmd/certspotter@latest
 /usr/local/go/bin/go install -v github.com/tomnomnom/hacks/inscope@latest
 /usr/local/go/bin/go install -v github.com/trickest/mksub@latest
 
