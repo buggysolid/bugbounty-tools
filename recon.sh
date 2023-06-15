@@ -45,6 +45,7 @@ start(){
         echo "Usage: recon somedomain.tld wildcard"
         return -1
     fi
+    source $HOME/.bashrc
     OUTPUT_DIR="$(mktemp -d -p $HOME/ $1.XXXXXX)"
     getdns $1
     gendns
