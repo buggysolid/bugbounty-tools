@@ -10,7 +10,7 @@ else
   exit
 fi
 
-ARCH="$(uname -a | cut -d ' ' -f12)"
+ARCH="$(uname -m)"
 
 GO_LANG_DOWNLOAD_URL='https://go.dev/dl/go1.20.4.linux-amd64.tar.gz'
 
@@ -33,9 +33,8 @@ echo 'PATH=$PATH:/usr/local/go/bin' >> "$HOME/.bashrc"
 echo 'PATH=$PATH:$HOME/go/bin' >> "$HOME/.bashrc"
 
 echo 'Installing tools.'
-/usr/local/go/bin/go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-/usr/local/go/bin/go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
-/usr/local/go/bin/go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+/usr/local/go/bin/go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+$HOME/go/bin/pdtm -install dnsx,httpx,subfinder
 /usr/local/go/bin/go install -v github.com/tomnomnom/hacks/inscope@latest
 /usr/local/go/bin/go install -v github.com/trickest/mksub@latest
 
