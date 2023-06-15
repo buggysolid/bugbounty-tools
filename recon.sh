@@ -10,7 +10,7 @@ gendns(){
 }
 
 getcerts(){
-    crtsh -q %.$1 -o | grep -v '*' | grep -v 'can not Access crt.sh' >> $OUTPUT_DIR/certs.txt
+    curl "https://api.certspotter.com/v1/issuances?domain=$1&include_subdomains=true&expand=dns_names" | jq '.[] | .dns_names | .[]' | tr -d '"' | grep $1 | grep -v '*' >> $OUTPUT_DIR/certs.txt
     cat $OUTPUT_DIR/certs.txt >> $OUTPUT_DIR/subs.txt
 }
 
