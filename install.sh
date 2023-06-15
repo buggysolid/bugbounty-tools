@@ -37,6 +37,7 @@ echo 'Installing tools.'
 $HOME/go/bin/pdtm -install dnsx,httpx,subfinder
 /usr/local/go/bin/go install -v github.com/tomnomnom/hacks/inscope@latest
 /usr/local/go/bin/go install -v github.com/trickest/mksub@latest
+/usr/local/go/bin/go install -v github.com/famasoon/crtsh@latest
 
 echo "Installing wordlists."
 git clone https://github.com/buggysolid/bugbounty-wordlist "$HOME"/bugbounty-wordlist

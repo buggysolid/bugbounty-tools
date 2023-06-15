@@ -6,7 +6,12 @@ export CC=/usr/bin/clang
 export EDITOR=vim
 
 gendns(){
-    mksub -silent -df $OUTPUT_DIR/subs.txt -w $HOME/bugbounty-wordlist/dns.txt -o $OUTPUT_DIR/subs_permutated.txt
+    mksub -silent -t 500 -df $OUTPUT_DIR/subs.txt -w $HOME/bugbounty-wordlist/dns.txt -o $OUTPUT_DIR/subs_permutated.txt
+}
+
+getcerts(){
+    crtsh -q %.$1 -o | grep -v '*' | grep -v 'can not Access crt.sh' >> $OUTPUT_DIR/certs.txt
+    cat $OUTPUT_DIR/certs.txt >> $OUTPUT_DIR/subs.txt
 }
 
 getdns(){
@@ -14,6 +19,7 @@ getdns(){
 }
 
 querydns(){
+    sort -u $OUTPUT_DIR/subs.txt -o $OUTPUT_DIR/subs.txt
     dnsx -silent -a -aaaa -cname -retry 1 -r $HOME/bugbounty-wordlist/resolvers.txt -l $OUTPUT_DIR/subs_permutated.txt -o $OUTPUT_DIR/resolved.txt
     cat $OUTPUT_DIR/resolved.txt | inscope > $OUTPUT_DIR/resolved_inscope.txt
     # CNAMEs can end up pointing to something an A record was pointing to in the first place.
@@ -48,6 +54,7 @@ start(){
     source $HOME/.bashrc
     OUTPUT_DIR="$(mktemp -d -p $HOME/ $1.XXXXXX)"
     getdns $1
+    getcerts $1
     gendns
     querydns
     http
